@@ -1,0 +1,53 @@
+openapi: 3.0.1
+info:
+  description: "Swagger da API que retorna o valor do metro quadrado."
+  version: "1.0.0"
+  title: "inGaia API v1"
+tags:
+- name: "Obter Metragem"
+  description: "Recebe quantidade de metros quadrados e calcula o valor do imóvel."
+  externalDocs:
+    description: "Mais Informações"
+    url: "https://github.com/ingaia/backend-challenge"
+servers:
+  - url: '/'
+    description: Relativo (padrão)
+  - url: 'https://in-gaia.vercel.app/{versao}'
+    variables:
+      versao:
+        default: v1
+        enum:
+          - v1
+          - v2
+          - v3
+paths:
+  /calc/metro/quadrado:
+    post:
+      summary: Recebe quantidade de metros quadrados e calcula o valor do imóvel.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObterValor'
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RequestSuccess'
+components:
+  schemas:
+    ObterValor:
+      title: Valor
+      type: object
+      properties:
+        meters:
+          type: integer
+      required:
+        - integer
+        
+    RequestSuccess:
+      properties:
+        Valor do imóvel:
+            type: integer
