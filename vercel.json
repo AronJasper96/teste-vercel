@@ -7,10 +7,6 @@
         },
         { "src": "*.html",
           "use": "@vercel/static" 
-        },
-        {
-           "src": "*.json", 
-           "use": "@vercel/node" 
         }
     ],
     "routes": [
